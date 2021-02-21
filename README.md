@@ -17,4 +17,12 @@ LaTex環境使用[MiKTeX](https://miktex.org/)。推薦編輯器為[VScode](http
 預設編譯路徑為"xelatex-> makeindex-> bibtex-> xelatex\*2"。若沒有使用List of Symbols章節，則可以省略makeindex，將json檔中"xelatex-> bibtex-> xelatex\*2"改到首位即可修改預設編譯方法。
 
 ---
+### License 授權條款
+本著作採用創用 CC 姓名標示-非商業性-相同方式分享 4.0 授權條款
+
+This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+<p align="center">
+  <img src='https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png' alt="CC-BY-NC-SA-4.0"/>
+</p>
 而本模版所使用到的國立成功大學浮水印則由國立成功大學擁有**所有**相關的權利。故如使用這浮水印到論文以外的應用，請跟"成大圖書館 系統管理組-數位論文小組"聯絡。
