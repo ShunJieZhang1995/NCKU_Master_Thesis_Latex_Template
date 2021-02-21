@@ -26,7 +26,6 @@
 \usepackage{tabulary}
 \usepackage[titletoc]{appendix}
 \usepackage{tikz}
-\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}  
 
 %% --Font style setting--
 \usepackage{indentfirst}
@@ -90,8 +89,8 @@
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}b{#1}}
 \allowdisplaybreaks
 \usepackage[english]{babel}
-%\usepackage[square,numbers]{natbib}
-\usepackage{natbib}
+\usepackage[square,numbers]{natbib}
+%\usepackage{natbib}
 \usepackage{multirow}
 \usepackage[hidelinks]{hyperref}
 \usepackage{breakcites}
@@ -186,18 +185,22 @@
 		%% Main content
 		\mainmatter
 
+		\chapter{Introduction}
+		\label{chap:Introduction}
+		\input{Introduction}
+
 		\chapter{Conclusion and future work}
 		\label{chap:Conclusion}
 		\input{Conclusion}
 		
 		\begin{singlespace}
-			\clearpage
-			%% References (bibliography)
-			\addcontentsline{toc}{chapter}{References}
-			\renewcommand{\bibname}{References}
-			\bibliographystyle{apalike}
-			\bibliography{library}% Name of .bib file
-			\clearpage
+		\clearpage
+		%% References (bibliography)
+		\addcontentsline{toc}{chapter}{References}
+		\renewcommand{\bibname}{References}
+		\bibliographystyle{apalike}
+		\bibliography{library}% Name of .bib file
+		\clearpage
 		\end{singlespace}
 		%% Appendix
 		%\begin{appendices}
