@@ -1,0 +1,125 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "window.zoomLevel": -1,
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "xelatex",
+            "command": "miktex-xetex.exe",
+            "args": [
+                "-synctex=1",
+                "-undump=xelatex",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "pdflatex",
+            "command": "miktex-pdftex.exe",
+            "args": [
+                "-synctex=1",
+                "-undump=pdflatex",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "miktex-bibtex.exe",
+            "args": ["%DOCFILE%"]
+        },
+        {
+            "name":"makeindex",
+            "command": "makeindex.exe",
+            "args": [
+                "%DOCFILE%.nlo",
+                "-s",
+                "nomencl.ist",
+                "-o",
+                "%DOCFILE%.nls",
+                "-t",
+                "%DOCFILE%.nlg"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex-> makeindex-> bibtex-> xelatex*2",
+            "tools": ["xelatex", "makeindex", "bibtex", "xelatex", "xelatex"]
+        },
+        {
+            "name": "xelatex-> bibtex-> xelatex*2",
+            "tools": ["xelatex", "bibtex", "xelatex", "xelatex"]
+        },
+        {
+            "name": "pdflatex-> bibtex-> pdflatex*2",
+            "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+        },
+        {
+            "name": "xelatex",
+            "tools": ["xelatex", "xelatex"]
+        },
+        {
+            "name": "pdflatex",
+            "tools": ["pdflatex", "pdflatex"]
+        }
+    ],
+    "latex-workshop.latex.clean.fileTypes": [
+        "*.aux",
+        "*.bbl",
+        "*.blg",
+        "*.idx",
+        "*.ind",
+        "*.lof",
+        "*.lot",
+        "*.out",
+        "*.toc",
+        "*.acn",
+        "*.acr",
+        "*.alg",
+        "*.glg",
+        "*.glo",
+        "*.gls",
+        "*.fls",
+        "*.log",
+        "*.fdb_latexmk",
+        "*.snm",
+        "*.synctex(busy)",
+        "*.synctex.gz(busy)",
+        "*.nav",
+        "*.synctex.gz",
+        "*.nlo",
+        "*.nlg",
+        "*.nls",
+        "*.nlg%",
+        "*.ilg",
+        "*.nls%",
+        "*maf",
+        "*.mtc",
+        "*.mtc0",
+        "*.mtc1",
+        "*.mtc2",
+        "*.mtc3",
+        "*.mtc4",
+        "*.mtc5",
+        "*.mtc6",
+        "*.mtc7",
+        "*.mtc8",
+        "*.mtc9",
+        "*.mtc10",
+        "*.mtc11",
+        "*.mtc12",
+        "*.mtc13",
+        "*.mtc14"
+    ],
+    "editor.fontSize": 24,
+    "cSpell.userWords": [
+        "cheng",
+        "ncku"
+    ]
+}

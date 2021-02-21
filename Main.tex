@@ -1,0 +1,210 @@
+\documentclass[12pt, a4paper, oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{forloop}
+
+%% --Figure settings--
+\ifx\pdfoutput\undefined
+%Use old Latex if PDFLatex does not work
+\usepackage[dvips]{graphicx}% To get graphics working
+\DeclareGraphicsExtensions{.eps} % Encapsulated PostScript
+\else
+%Use PDFLatex
+\usepackage[pdftex]{graphicx}% To get graphics working
+\DeclareGraphicsExtensions{.pdf,.jpg,.png,.bmp}
+\pdfcompresslevel=9
+\fi
+\usepackage{subcaption}
+\graphicspath{{Figures/}} %Path of figures
+% -----------------------------------------
+%%
+\usepackage{minitoc}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{longtable}
+\usepackage{makecell}
+\usepackage{rotating}
+\usepackage{tabulary}
+\usepackage[titletoc]{appendix}
+\usepackage{tikz}
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}  
+
+%% --Font style setting--
+\usepackage{indentfirst}
+\usepackage{mathspec}
+\setmainfont{Times New Roman}
+\setmathsfont{Times New Roman}
+\usepackage{xeCJK}
+\usepackage{ifplatform} %Package for finding out which operating system is used.
+\ifwindows
+\setCJKmainfont{標楷體}
+\else
+\setCJKmainfont{BiauKai}
+\fi
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\defaultCJKfontfeatures{AutoFakeBold=6,AutoFakeSlant=.4}
+
+% -----------------------------------------
+%% Chinese Font bf setting
+% -----------------------------------------
+\def\xeCJKembold{0.4}
+
+%% --hack into xeCJK, you don't need to understand it--
+\def\saveCJKnode{\dimen255\lastkern}
+\def\restoreCJKnode{\kern-\dimen255\kern\dimen255}
+
+%% --save old definition of \CJKsymbol and \CJKpunctsymbol for CJK output--
+\let\CJKoldsymbol\CJKsymbol
+\let\CJKoldpunctsymbol\CJKpunctsymbol
+
+%% --apply pdf literal fake bold--
+\def\CJKfakeboldsymbol#1{%
+	\special{pdf:literal direct 2 Tr \xeCJKembold\space w}%
+	\CJKoldsymbol{#1}%
+	\saveCJKnode
+	\special{pdf:literal direct 0 Tr}%
+	\restoreCJKnode}
+\def\CJKfakeboldpunctsymbol#1{%
+	\special{pdf:literal direct 2 Tr \xeCJKembold\space w}%
+	\CJKoldpunctsymbol{#1}%
+	\saveCJKnode
+	\special{pdf:literal direct 0 Tr}%
+	\restoreCJKnode}
+\newcommand\CJKfakebold[1]{%
+	\let\CJKsymbol\CJKfakeboldsymbol
+	\let\CJKpunctsymbol\CJKfakeboldpunctsymbol
+	#1%
+	\let\CJKsymbol\CJKoldsymbol
+	\let\CJKpunctsymbol\CJKoldpunctsymbol}
+%%
+%%
+\usepackage{wallpaper}
+\usepackage{setspace}
+\usepackage{authblk}
+\newsavebox{\largestimage}
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+\usepackage{tabularx}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}b{#1}}
+\allowdisplaybreaks
+\usepackage[english]{babel}
+%\usepackage[square,numbers]{natbib}
+\usepackage{natbib}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{breakcites}
+\usepackage{geometry}
+\usepackage[draft]{todonotes}   % notes showed
+\usepackage{enumitem}
+%% 
+%% --Date setting for cover--
+\usepackage{datetime} % For displaying month and year in the cover
+\usepackage{fp} % To calculate the year of Minguo(民國)
+\FPsub\Minguo{\the\year}{1911}
+\FPeval{\Minguo}{round(Minguo,0)}
+
+%% --Nomenclature of List of Symbols--
+\usepackage{nomencl}
+\makenomenclature
+%% -----------------------------------------
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{1}
+\usepackage{lipsum}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please create a new tex file and copy the content of this template%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+	\pagenumbering{gobble}
+	\begin{titlepage}
+		\newgeometry{a4paper,
+		total={210mm,297mm},
+		top=23mm,
+		bottom=30mm,
+		left=20mm,
+		right=20mm,}
+	\input{Cover.tex}
+	\ThisCenterWallPaper{.325}{NCKU_thesis_watermark.jpg}
+	\end{titlepage}
+	\newgeometry{
+		a4paper,
+		total={210mm,297mm},
+		left=30mm,
+		right=25mm,
+		top=23mm,
+		bottom=35mm,
+	}
+	\CenterWallPaper{.325}{NCKU_thesis_watermark.jpg}
+	\begin{spacing}{1.5}
+		\frontmatter
+		\addcontentsline{toc}{chapter}{Chinese abstract}
+		\chapter*{\centering Chinese abstract}
+		\label{chap:chi_abstract}
+		\input{Abstract_ch}
+		\newpage
+		%% Abstract
+		\addcontentsline{toc}{chapter}{Abstract}
+		\chapter*{\centering Abstract}
+		\label{chap:abstract}
+		\input{Abstract_en}
+		\newpage
+		\addcontentsline{toc}{chapter}{Acknowledgment}
+		%% acknowledgment
+		\chapter*{\centering Acknowledgment}
+		\label{chap:acknowledgment}
+		\input{Acknowledgement}
+		\newpage
+		%% Table of contents
+		\dominitoc 
+		\begin{singlespace}
+		\renewcommand{\contentsname}{Table of Contents}
+		\cleardoublepage
+		\addcontentsline{toc}{chapter}{Table of Contents}
+		\tableofcontents
+		%% List of tables
+		\newpage
+		\addcontentsline{toc}{chapter}{List of Tables}
+		\listoftables
+		%% List of figures
+		\newpage
+		\addcontentsline{toc}{chapter}{List of Figures}
+		\listoffigures
+		%% List of symbols
+		\newpage
+		\addcontentsline{toc}{chapter}{List of Symbols}
+		\renewcommand{\nomname}{List of Symbols}
+		\printnomenclature
+		%% List of Acronyms
+		% \chapter*{List of Acronyms}
+		% \addcontentsline{toc}{chapter}{List of Acronyms}
+		% \input{List_of_acronyms.tex}
+		\end{singlespace}
+		%% Main content
+		\mainmatter
+
+		\chapter{Conclusion and future work}
+		\label{chap:Conclusion}
+		\input{Conclusion}
+		
+		\begin{singlespace}
+			\clearpage
+			%% References (bibliography)
+			\addcontentsline{toc}{chapter}{References}
+			\renewcommand{\bibname}{References}
+			\bibliographystyle{apalike}
+			\bibliography{library}% Name of .bib file
+			\clearpage
+		\end{singlespace}
+		%% Appendix
+		%\begin{appendices}
+		%	\chapter{AppendixA}
+		%	\label{app:A}
+		%	\input{AppendixA.tex}
+		%\end{appendices}
+		\backmatter
+	\end{spacing}
+\end{document}      
