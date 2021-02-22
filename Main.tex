@@ -32,7 +32,8 @@
 \usepackage{mathspec}
 \setmainfont{Times New Roman}
 \setmathsfont{Times New Roman}
-\usepackage{xeCJK}
+%\usepackage{xeCJK}
+\usepackage[BoldFont, SlantFont]{xeCJK}
 \usepackage{ifplatform} %Package for finding out which operating system is used.
 \ifwindows
 \setCJKmainfont{標楷體}
@@ -189,6 +190,10 @@
 		\label{chap:Introduction}
 		\input{Introduction}
 
+		\chapter{Materials and methods}
+		\label{chap:Materials}
+		\input{Materials}
+
 		\chapter{Conclusion and future work}
 		\label{chap:Conclusion}
 		\input{Conclusion}
@@ -203,11 +208,11 @@
 		\clearpage
 		\end{singlespace}
 		%% Appendix
-		%\begin{appendices}
-		%	\chapter{AppendixA}
-		%	\label{app:A}
-		%	\input{AppendixA.tex}
-		%\end{appendices}
+		\begin{appendices}
+			\chapter{\LaTeX 基礎}
+			\label{app:A}
+			\input{AppendixA.tex}
+		\end{appendices}
 		\backmatter
 	\end{spacing}
 \end{document}      
