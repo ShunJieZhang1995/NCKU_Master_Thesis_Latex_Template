@@ -9,6 +9,7 @@
 *.bib
 
 *.pdf
+!Main.pdf
 
 #Keep refernece
 !library.bib
